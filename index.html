@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lectia 10 Animatie</title>
+
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ol style="list-style: upper-roman">
+          <li><a href="#tranzitii">Tranzitii CSS</a></li>
+          <li><a href="#proprietăti">Proprietăti animate</a></li>
+          <li><a href="#animatia">Animatia CSS</a></li>
+          <li><a href="#perspectiva">Perspectiva</a></li>
+          <li><a href="#transformari">Transformari 2D</a></li>
+        </ol>
+      </nav>
+    </header>
+    <main>
+      <h1>Modulul 5 - Lecția 10 - Animatie</h1>
+
+      <!-- I. Tranziții CSS -->
+      <section>
+        <h2 id="tranzitii">I. Tranziții CSS</h2>
+        <p>
+          Tranzițiile CSS vă permit să animați modificarea valorii unei
+          proprietăți în timp, monitorizând viteza acelei tranziții.
+          Proprietățile sunt modificate atunci când are loc un anumit eveniment,
+          care este descris de pseudo-clasa corespunzătoare, de exemplu :hover.
+        </p>
+        <p>
+          O tranziție are întotdeauna doar două stări – valoarea inițială și
+          finală a unei proprietăți care poate schimba această valoare A &gt; B
+          și B &gt; A pentru un timp specificat. În cazul animațiilor cu multe
+          stări, trebuie să utilizați animația CSS.
+        </p>
+        <p>
+          Următoarele patru proprietăți controlează diferite opțiuni de
+          tranziție.
+        </p>
+        <ul>
+          <li>transition-property: (proprietate)</li>
+          <li>transition-duration: (durată)</li>
+          <li>
+            transition-timing-function: (funcție de distribuție a timpului)
+          </li>
+          <li>transition-delay: (întârziere)</li>
+        </ul>
+        <p>
+          Tot ceea ce trebuie de făcut este să specificăm valorile inițiale ale
+          proprietăților care urmează să fie animate și valorile proprietăților
+          de tranziție, apoi unui eveniment precum :hover setăm noile valori ale
+          proprietăților, până la care dorim să animăm elementul. Pentru a porni
+          tranziția trecem cu mouse-ul peste pătrat.
+        </p>
+
+        <!-- Exemplu -->
+        <div>
+          <p><b>Exemplu :</b></p>
+          <div class="body">
+            <div class="box"></div>
+          </div>
+        </div>
+        <p><b>Util...!</b></p>
+        <p>
+          Rețineți că atunci când adăugați mișcări (tranziții și animații),
+          acestea ar trebui să fie simple, nu intruzive și logice. Animația ar
+          trebui să aibă un sens și să atragă atenția, dar fără a distrage
+          atenția utilizatorului de la interacțiunea cu conținutul.
+        </p>
+        <ol>
+          <li>
+            <h3>Proprietatea transition-property</h3>
+            <p>
+              Aceasta specifică proprietățile cărora li se va aplica un efect de
+              tranziție. Valoarea poate fi o singură proprietate sau o listă de
+              proprietăți separate prin virgulă. Valoarea implicită este all –
+              vor fi animte toate proprietățile posibile.
+            </p>
+            <p>
+              .box { <br />
+              background-color: teal; <br />
+              transition-property: background-color; <br />
+              } <br />
+              <br />
+              .box:hover { <br />
+              background-color: orange; <br />
+              }
+            </p>
+            <p><b>Atentie...!</b></p>
+            <p>
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties"
+                ><b>Lista proprietăților, care pot fi animate</b></a
+              >
+              se poate schimba în viitor. Prin urmare, este obligatoriu să
+              specificați proprietatea care trebuie animată, de altfel toate
+              proprietățile posibile ale elementului vor fi animate, ceea ce va
+              duce la rezultate neașteptate.
+            </p>
+          </li>
+          <li>
+            <h3>Proprietatea transition-duration</h3>
+            <p>
+              Dacă durata unei tranziții nu este specificată, atunci schimbarea
+              valorii se va produce instantaneu, fără animație. Proprietatea
+              transition-duration specifică perioada de timp în care trebuie să
+              aibă loc tranziția. Aceasta este indicată în secunde, de exemplu
+              2s sau 0,5s, sau în milisecunde – 2000ms și, respectiv, 500ms.
+              Dacă diferite proprietăți au valori diferite ale timpului de
+              tranziție, atunci acestea sunt enumerate separat prin virgule.
+            </p>
+            <p>
+              .box { <br />
+              background-color: teal; <br />
+              transition-property: background-color; <br />
+              transition-duration: 1000ms; <br />
+              } <br />
+              <br />
+              .box:hover { <br />
+              background-color: orange; <br />
+              }
+            </p>
+
+            <!-- Exemplu -->
+            <div>
+              <p><b>Exemplu :</b></p>
+              <div class="duration-body">
+                <h1>
+                  A transition is triggered when hovering over a container
+                </h1>
+
+                <div class="flex-container">
+                  <div class="circle">500ms</div>
+                  <div class="circle">1500ms</div>
+                  <div class="circle">3000ms</div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <h3>Proprietatea transition-timing-function</h3>
+            <p>
+              Aceasta specifică
+              <a href="https://cubic-bezier.com/#.17,.67,.83,.67"
+                ><b>funcția de distribuție a timpului</b></a
+              >, care descrie cât de repede se schimbă o proprietate de la o
+              valoare la alta într-un timp specificat în transition-duration,
+              adică comportamentul animației.
+            </p>
+            <p>
+              .box { <br />
+              background-color: teal; <br />
+              transition-property: background-color; <br />
+              transition-duration: 1000ms; <br />
+              transition-timing-function: linear; <br />
+              } <br />
+              <br />
+              .box:hover { <br />
+              background-color: orange; <br />
+              }
+            </p>
+            <p>
+              Există mai multe cuvinte cheie în CSS pentru a descrie funcțiile
+              de bază Bezier. Valoarea implicită este ease – tranziția începe
+              lent, accelerează rapid și apoi încetinește din nou la sfârșit.
+              Restul cuvintelor cheie sunt liniar, ease-in, ease-out și
+              ease-in-out.
+            </p>
+
+            <!-- Exemplu -->
+            <div>
+              <p><b>Exemplu :</b></p>
+              <div class="timing-body">
+                <h1 class="h1">
+                  A transition is triggered when hovering over a container
+                </h1>
+
+                <div class="timing-container">
+                  <div class="timing-circle"></div>
+                  <div class="timing-circle"></div>
+                  <div class="timing-circle"></div>
+                  <div class="timing-circle"></div>
+                  <div class="timing-circle"></div>
+                  <div class="timing-circle"></div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <h3>Proprietatea transition-delay</h3>
+            <p>
+              Reprezintă întârzierea cu care va începe animația de tranziție.
+              Este folosită pentru a construi diferite scenarii – o secvență de
+              tranziții ale diferitelor elemente. Valoarea implicită este 0s.
+            </p>
+            <p>
+              În exemplul dat, întârzierea este setată la 500ms. Treceți cu
+              cursorul mouse-ului peste pătrat și tranziția va începe la doar o
+              jumătate de secundă după acest eveniment.
+            </p>
+
+            <!-- Exemplu -->
+            <div>
+              <p><b>Exemplu :</b></p>
+              <div class="delay-body">
+                <div class="delay-box"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <h3>Forma scurtă a proprietății "transition”</h3>
+            <p>
+              Toate proprietățile de tranziție pot fi combinate într-o
+              proprietate compozită transition.
+            </p>
+            <p>transition: [property] [duration] [timing-function] [delay]</p>
+            <p>
+              Dacă mai multe proprietăți sunt animate, atunci setul de valori
+              pentru fiecare dintre ele este separat prin virgulă. Este necesar
+              să se precizeze proprietatea tranziției și durata acesteia.
+              Funcțiile de distribuție a timpului și întârzierii pot fi omise,
+              apoi pentru acestea vor fi utilizate valori implicite.
+            </p>
+            <p>
+              transition: background-color 500ms linear, transform 500ms
+              ease-in-out;
+            </p>
+
+            <!-- Exemplu -->
+            <div>
+              <p><b>Exemplu :</b></p>
+              <div class="transition-body">
+                <div class="transition-box"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <h3>Scriptul cu transition-delay</h3>
+            <p>
+              Haideți să scriem un script simplu pentru tranziția culorii de
+              fundal și rotirea secțiunilor. În primul rând, elementul ar trebui
+              să își schimbe culoarea și numai după aceea ar trebui să înceapă
+              să se rotească. Tot ce trebuie să faceți este să indicați
+              tranziției de rotire să aștepte atât timp cât durează animația de
+              schimbare a culorii de fundal.
+            </p>
+            <p>
+              transition: background-color 500ms linear, transform 500ms
+              ease-in-out 500ms;
+            </p>
+
+            <!-- Exemplu -->
+            <div>
+              <p><b>Exemplu :</b></p>
+              <div class="delay-script-body">
+                <div class="delay-script-box"></div>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- II. Proprietăti animate -->
+      <section>
+        <h2 id="proprietăti">II. Proprietăti animate</h2>
+        <p>
+          Dintre toate proprietățile care pot fi animate, se recomandă să
+          folosiți după posibilitate doar două: opacity (transparență) și
+          transform (transformare). În cele mai multe cazuri, animarea altor
+          proprietăți nu va afecta semnificativ performanța paginii, dar cel mai
+          bine este să respectați această regulă pentru a crea cea mai
+          performantă animație posibilă. Totul se referă la modul în care
+          browserul desenează pagina web.
+        </p>
+        <ol>
+          <li>
+            <b>Pasul JavaScript</b> – un script sau un eveniment, cum ar fi
+            hover sau focus, declanșează animația stilurilor elementului.
+          </li>
+          <li>
+            <b>Pasul Style </b>– sunt calculate stiluri noi de elemente:
+            specificitatea, conflictele, cascada și altele.
+          </li>
+          <li>
+            <b>Pasul Layout</b> – se calculează geometria elementului. Când
+            animați o proprietate care afectează geometria, cum ar fi margin,
+            browserul trebuie să calculeze o nouă poziție pentru un grup întreg
+            de elemente.
+          </li>
+          <li>
+            <b>Pasul Painting</b> – sunt desenate straturi, deoarece elementele
+            sunt suprapuse sau poziționate, creând astfel un tort stratificat.
+          </li>
+          <li>
+            <b>Pasul Composite</b> – compunerea tuturor straturilor pregătite și
+            redarea imaginii finale pe ecranul utilizatorului.
+          </li>
+        </ol>
+        <p>
+          De exemplu, dacă animați proprietatea width, browserul va trebui să
+          parcurgă pașii Layout > Paint > Composite, ceea ce este destul de
+          costisitor pentru performanța unei pagini web.
+        </p>
+        <p>
+          Animarea proprietății background nu afectează geometria elementelor,
+          așa că browserul trebuie doar să urmeze pașii Paint > Composite.
+        </p>
+        <p>
+          Pentru a anima proprietățile opacity și transform, browserul nu are
+          nevoie să calculeze o geometrie nouă sau să redeseneze straturi, este
+          suficient să efectueze doar pasul Composite.
+        </p>
+        <p>
+          Exemplul demonstrează diferența de performanță dintre animarea
+          umpluturii din stânga și transformarea pentru a deplasa 3000 de
+          elemente. La animarea margin, efectul deplasării este zimțat, sacadat,
+          deoarece browserul trebuie să calculeze constant geometria și
+          straturile. Dacă transform este animat, mișcarea este lină, fără
+          sărituri.
+        </p>
+      </section>
+
+      <!-- III. Animatia CSS -->
+      <section>
+        <h2 id="animatia">III. Animatia CSS</h2>
+        <p>
+          La fel ca tranzițiile, animațiile adaugă paginilor web dinamism, dar
+          spre deosebire de tranziții, animațiile nu au nevoie de un inițiator
+          (eveniment) obligatoriu, ele pot fi repetate de un număr infinit de
+          ori, iar între stările inițiale și cele finale poate exista orice
+          număr de stări intermediare.
+        </p>
+
+        <ol>
+          <li>
+            <h3>Declararea animației</h3>
+            <p>
+              Declararea unei animații cu directiva @keyframes, vă permite să
+              descrieți un set de cadre (stări) de animație, care trebuie să fie
+              compuse din cel puțin două (început și sfârșit).
+            </p>
+            <p>
+              /* Numele ar trebui să fie descriptiv, adică ce fel de animație
+              este */ <br />
+              @keyframes numeAnimație { <br />
+              /* Cadrele vor fi descrise aici */ <br />
+              }
+            </p>
+            <p>
+              Cadrele determină în ce moment sunt modificate proprietățile
+              animate și sunt descrise de cuvintele cheie from (alias 0%) și to
+              (alias 100%) sau, cel mai frecvent, ca procent în intervalul
+              0%-100%, deoarece procentele vă permit să specificați o valoare
+              arbitrară.
+            </p>
+            <p>
+              /* Numele ar trebui să fie descriptiv, adică ce fel de animație
+              este */ <br />
+              @keyframes numeAnimație { <br />
+              0% { <br />
+              /* Proprietăți de schimbat */ <br />
+              } <br />
+              <br />
+              /* Numărul arbitrar de cadre intermediare */ <br />
+              <br />
+              100% { <br />
+              /* Proprietăți de schimbat */ <br />
+              } <br />
+              }
+            </p>
+            <p><b>Util...!</b></p>
+            <p>
+              În animație nu se specifică un timp sau un element la care va fi
+              aplicată, ceea ce înseamnă că aceeași animație poate fi folosită
+              din nou pentru diferite elemente.
+            </p>
+            <p>
+              Haideți să declarăm o animație pentru a schimba culoarea de fundal
+              a unui element în trei puncte: 0%, 50% și 100%.
+            </p>
+            <p>
+              @keyframes changeBgColor { <br />
+              0% { <br />
+              background-color: teal; <br />
+              } <br />
+              <br />
+              50% { <br />
+              background-color: orange; <br />
+              } <br />
+              <br />
+              100% { <br />
+              background-color: deepskyblue; <br />
+              } <br />
+              }
+            </p>
+          </li>
+          <li>
+            <h3>Proprietățile animației</h3>
+            <ul>
+              <li>
+                <h4>animation-name</h4>
+                <p>
+                  Pentru a utiliza o animație care a fost deja declarată,
+                  trebuie să specificați numele acesteia ca valoare pentru
+                  proprietatea animation-name.
+                </p>
+                <p>
+                  .box { <br />
+                  animation-name: changeBgColor;<br />
+                  }
+                </p>
+                <p>
+                  Animația poate fi adăugată unui selector, după care va fi
+                  aplicată imediat la încărcarea paginii. De asemenea, puteți
+                  aplica o animație unui eveniment, cum ar fi hover sau focus,
+                  folosind pseudo-clasele corespunzătoare.
+                </p>
+                <p>
+                  . box { <br />
+                  /* Stiluri de bază ale elementelor */ <br />
+                  } <br />
+                  <br />
+                  /* Adăugați o animație la hover */ <br />
+                  .box:hover { <br />
+                  animation-name: changeBgColor; <br />
+                  }
+                </p>
+              </li>
+              <li>
+                <h4>animation-duration</h4>
+                <p>
+                  Aceasta setează durata unei animații – timpul în care toate
+                  cadrele vor fi parcurse. Poate fi setat în secunde sau
+                  milisecunde. Dacă nu setați o durată, animația va fi
+                  instantanee.
+                </p>
+                <p>
+                  .box { <br />
+                  animation-name: changeBgColor; <br />
+                  animation-duration: 3000ms; <br />
+                  }
+                </p>
+                <p>
+                  În mod implicit, animația are loc doar o dată și valorile
+                  finale ale proprietăților animate nu sunt salvate, în schimb
+                  elementul revine la starea inițială.
+                </p>
+              </li>
+              <li>
+                <h4>animation-timing-function</h4>
+                <p>
+                  Setează
+                  <a href="https://cubic-bezier.com/#.17,.67,.83,.67"
+                    >funcția de distribuție a timpului</a
+                  >
+                  pentru animație, valorile sunt aceleași ca pentru
+                  transition-timing-function din tranzițiile CSS.
+                </p>
+              </li>
+              <li>
+                <h4>animation-delay</h4>
+              </li>
+              <li>
+                <h4>animation-iteration-count</h4>
+              </li>
+              <li>
+                <h4>animation-direction</h4>
+              </li>
+              <li>
+                <h4>animation-fill-mode</h4>
+              </li>
+              <li>
+                <h4>animation-play-state</h4>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Proprietatea animation</h3>
+            <p>
+              animation: [name] [duration] [timing-function] [delay]
+              [iteration-count] [direction] [fill-mode] [play-state]
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- IV. Perspectiva -->
+      <section>
+        <h2 id="perspectiva">IV. Perspectiva</h2>
+        <ol>
+          <li>
+            <h3>Funcţia perspective()</h3>
+          </li>
+          <li>
+            <h3>Proprietatea perspective</h3>
+          </li>
+        </ol>
+      </section>
+
+      <!-- V. Transformari 2D -->
+      <section>
+        <h2 id="transformari">V. Transformari 2D</h2>
+        <ol>
+          <li>
+            <h3>Proprietatea transform</h3>
+          </li>
+          <li>
+            <h3>Scalarea</h3>
+          </li>
+          <li>
+            <h3>Rotirea</h3>
+          </li>
+          <li>
+            <h3>Deplasarea</h3>
+            <ul>
+              <li>
+                <h4>Centrarea elementului</h4>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Distorsiunea</h3>
+          </li>
+          <li>
+            <h3>Originea de transformare</h3>
+          </li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>
