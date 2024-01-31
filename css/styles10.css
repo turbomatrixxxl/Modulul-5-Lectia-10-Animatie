@@ -4,6 +4,66 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 10px;
+  background: yellow;
+  background: linear-gradient(
+    317deg,
+    rgb(207, 192, 52) 40%,
+    rgba(31, 170, 84, 0.44) 64%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+a {
+  display: flex;
+  text-decoration: none;
+  color: blue;
+  transition: text-decoration, color 500ms ease-in-out;
+}
+
+a:hover,
+a:focus {
+  color: red;
+  text-decoration: underline;
+}
+
+/* After & before */
+
+a::before,
+a::after {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+}
+
+/* Adds and hides eyes icon after the link text */
+
+a::before {
+  margin-right: 16px;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/599/599516.png");
+  display: inline;
+}
+
+a::after {
+  display: none;
+  margin-left: 16px;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/599/599516.png");
+}
+
+/* Show arrow icon on hover */
+a:hover::after {
+  display: inline-block;
+}
+
+a:hover::before {
+  display: none;
+}
+
+/* button {
+  width: fit-content;
+} */
+
 p {
   text-indent: 15px;
   text-align: justify;
@@ -39,13 +99,8 @@ header {
   z-index: 3;
 }
 
-main {
-  /* display: block; */
-  /* margin-top: 20px; */
-}
-
 h1 {
-  margin-top: 120px;
+  margin-top: 60px;
 }
 
 /* Tranzitions */
@@ -230,6 +285,7 @@ h1 {
 .delay-box:hover {
   background-color: teal;
   transform: rotate(180deg);
+  cursor: pointer;
 }
 
 /* Tranzition */
@@ -307,6 +363,7 @@ h1 {
 .animation-box:hover {
   animation-name: changeBgColor;
   animation-duration: 3000ms;
+  cursor: pointer;
 }
 
 @keyframes changeBgColor {
@@ -366,7 +423,7 @@ h1 {
 
 .animation-direction-box:nth-child(1) {
   animation-direction: normal;
-  background-color: #3f51b5;
+  background-color: #49b53f;
 }
 
 .animation-direction-box:nth-child(2) {
